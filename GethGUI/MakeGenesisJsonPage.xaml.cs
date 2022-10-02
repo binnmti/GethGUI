@@ -21,7 +21,7 @@ public partial class MakeGenesisJsonPage : ContentPage
   ""nonce"": ""0x0000000000000042"",
   ""timestamp"": ""0x0"",
   ""parentHash"": ""0x0000000000000000000000000000000000000000000000000000000000000000"",
-  ""extraData"": "",
+  ""extraData"": """",
   ""gasLimit"": ""0x8000000"",
   ""difficulty"": ""0x4000"",
   ""mixhash"": ""0x0000000000000000000000000000000000000000000000000000000000000000"",
@@ -48,17 +48,16 @@ public partial class MakeGenesisJsonPage : ContentPage
             return;
         }
         var jsonFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-        var jsonFile = Path.Combine(jsonFolder, "Genesis.Json");
-
-        var conv = GenesisJson.Text;
-        conv = conv.Replace("\r", "\n");
-        await File.WriteAllTextAsync(jsonFile, conv);
-
+        var jsonFile = Path.Combine(jsonFolder, "Genesis.json");
+        await File.WriteAllTextAsync(jsonFile, GenesisJson.Text);
         //geth --datadir /home/ubuntu/eth_private_net init /home/ubuntu/eth_private_net/myGenesis.json
-        var result = GethCommand.Run(jsonFolder, $"--datadir {jsonFolder}/result init {jsonFile}");
+        var result = GethCommand.Run(jsonFolder, $"--datadir ./result init Genesis.json");
 
         GenesisJson.Text = GenesisTemplate;
+
+        await Shell.Current.GoToAsync("//MainPage");
+
     }
-   
+
 }
 

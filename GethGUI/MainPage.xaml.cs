@@ -1,4 +1,6 @@
-﻿namespace GethGUI;
+﻿using System.Reflection;
+
+namespace GethGUI;
 
 public partial class MainPage : ContentPage
 {
@@ -9,7 +11,9 @@ public partial class MainPage : ContentPage
 
     private async void OnRunClicked(object sender, EventArgs e)
     {
-        var result = GethCommand.Run("", $"--networkid \"15\" --nodiscover --datadir ./ console 2>> ./geth_err.log");
+        var jsonFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
+        var result = GethCommand.Run(jsonFolder, $"--networkid \"15\" --nodiscover --datadir ./result console 2>> ./geth_err.log");
     }
 
     private async void OnCounterClicked(object sender, EventArgs e)
