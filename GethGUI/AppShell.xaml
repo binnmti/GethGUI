@@ -11,4 +11,9 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="MakeGenesisJsonPage"
+        ContentTemplate="{DataTemplate local:MakeGenesisJsonPage}"
+        Route="MakeGenesisJsonPage" />
+
 </Shell>

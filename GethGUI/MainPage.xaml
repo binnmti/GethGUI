@@ -14,18 +14,55 @@
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
+            
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button
+                x:Name="RunButton"
+                Text="Run"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnRunClicked"
+                HorizontalOptions="Center" />
+                
+                <Button
+                x:Name="CounterBtn2"
+                Text="-"
+                IsEnabled="False"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+            </HorizontalStackLayout>
 
-            <Label
-                Text="Hello, World!"
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Entry
+                Text=""
+                Placeholder=">"
                 SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
+                WidthRequest="500"
                 HorizontalOptions="Center" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
+                <Picker x:Name="picker"  HorizontalOptions="Center">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Baboon</x:String>
+                            <x:String>Capuchin Monkey</x:String>
+                            <x:String>Blue Monkey</x:String>
+                            <x:String>Squirrel Monkey</x:String>
+                            <x:String>Golden Lion Tamarin</x:String>
+                            <x:String>Howler Monkey</x:String>
+                            <x:String>Japanese Macaque</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+
+            </HorizontalStackLayout>
+
+
+            <Editor
+                Text=""
+                Placeholder=""
+                WidthRequest="500"
+                HeightRequest="200"
                 HorizontalOptions="Center" />
 
             <Button

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GethGUI.MakeGenesisJsonPage"
+             Title="MakeGenesisJsonPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="I am geth"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <Label Text="myGenesis.json" HorizontalOptions="Center" />
+            <Button Text="Make template"  Clicked="OnMakeTemplateClicked" HorizontalOptions="Center" />
+            <Editor
+                x:Name="GenesisJson"
+                Text=""
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                HeightRequest="500"
+                WidthRequest="800"
+                AutoSize="TextChanges" 
+                Placeholder="Write myGenesis.json"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="init"
+                Clicked="OnInitClicked"
+                SemanticProperties.Hint="Counts the number of times you click"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
