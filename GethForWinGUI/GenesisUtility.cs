@@ -48,7 +48,7 @@ namespace GethGUI
         {
             var json = File.ReadAllText(jsonFileName);
             var genesis = JsonSerializer.Deserialize<GenesisJson>(json);
-            return genesis.config.chainId;
+            return genesis?.config?.chainId ?? 0;
         }
     }
 }
