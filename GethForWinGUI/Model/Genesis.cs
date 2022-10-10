@@ -1,4 +1,6 @@
-﻿namespace GethGUI.Model
+﻿using System.Text.Json;
+
+namespace GethGUI.Model
 {
     public class Genesis
     {

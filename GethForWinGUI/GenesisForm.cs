@@ -67,11 +67,9 @@ namespace GethGUI
             SetEnabledOkButton();
         }
 
-
         private void GenesisContextTextBox_TextChanged(object sender, EventArgs e)
         {
             SetEnabledOkButton();
-
         }
 
         private void GenesisForm_FormClosing(object sender, FormClosingEventArgs e)

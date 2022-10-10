@@ -41,6 +41,10 @@
             this.InitButton = new System.Windows.Forms.Button();
             this.GethGroupBox = new System.Windows.Forms.GroupBox();
             this.StartButton = new System.Windows.Forms.Button();
+            this.DataDirectoryButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.DataDirectoryTextBox = new System.Windows.Forms.TextBox();
+            this.DataDirectoryFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.GethGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,7 +111,7 @@
             // 
             // GenesisFileNameTextBox
             // 
-            this.GenesisFileNameTextBox.Location = new System.Drawing.Point(171, 12);
+            this.GenesisFileNameTextBox.Location = new System.Drawing.Point(163, 49);
             this.GenesisFileNameTextBox.Name = "GenesisFileNameTextBox";
             this.GenesisFileNameTextBox.ReadOnly = true;
             this.GenesisFileNameTextBox.Size = new System.Drawing.Size(575, 31);
@@ -117,7 +121,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 15);
+            this.label2.Location = new System.Drawing.Point(4, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 25);
             this.label2.TabIndex = 8;
@@ -125,7 +129,7 @@
             // 
             // GenesisButton
             // 
-            this.GenesisButton.Location = new System.Drawing.Point(752, 10);
+            this.GenesisButton.Location = new System.Drawing.Point(744, 47);
             this.GenesisButton.Name = "GenesisButton";
             this.GenesisButton.Size = new System.Drawing.Size(36, 34);
             this.GenesisButton.TabIndex = 9;
@@ -155,7 +159,7 @@
             this.GethGroupBox.Controls.Add(this.label1);
             this.GethGroupBox.Controls.Add(this.PasswordTextBox);
             this.GethGroupBox.Enabled = false;
-            this.GethGroupBox.Location = new System.Drawing.Point(2, 46);
+            this.GethGroupBox.Location = new System.Drawing.Point(-3, 104);
             this.GethGroupBox.Name = "GethGroupBox";
             this.GethGroupBox.Size = new System.Drawing.Size(795, 449);
             this.GethGroupBox.TabIndex = 11;
@@ -172,17 +176,53 @@
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
+            // DataDirectoryButton
+            // 
+            this.DataDirectoryButton.Location = new System.Drawing.Point(744, 10);
+            this.DataDirectoryButton.Name = "DataDirectoryButton";
+            this.DataDirectoryButton.Size = new System.Drawing.Size(36, 34);
+            this.DataDirectoryButton.TabIndex = 14;
+            this.DataDirectoryButton.Text = "...";
+            this.DataDirectoryButton.UseVisualStyleBackColor = true;
+            this.DataDirectoryButton.Click += new System.EventHandler(this.DataDirectoryButton_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(126, 25);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Data Directory";
+            // 
+            // DataDirectoryTextBox
+            // 
+            this.DataDirectoryTextBox.Location = new System.Drawing.Point(163, 12);
+            this.DataDirectoryTextBox.Name = "DataDirectoryTextBox";
+            this.DataDirectoryTextBox.Size = new System.Drawing.Size(575, 31);
+            this.DataDirectoryTextBox.TabIndex = 12;
+            this.DataDirectoryTextBox.TextChanged += new System.EventHandler(this.DataDirectoryTextBox_TextChanged);
+            // 
+            // DataDirectoryFolderBrowserDialog
+            // 
+            this.DataDirectoryFolderBrowserDialog.RootFolder = System.Environment.SpecialFolder.ApplicationData;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 507);
+            this.ClientSize = new System.Drawing.Size(804, 565);
+            this.Controls.Add(this.DataDirectoryButton);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.DataDirectoryTextBox);
             this.Controls.Add(this.GenesisButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.GenesisFileNameTextBox);
             this.Controls.Add(this.GethGroupBox);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.GethGroupBox.ResumeLayout(false);
             this.GethGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -205,5 +245,9 @@
         private Button InitButton;
         private GroupBox GethGroupBox;
         private Button StartButton;
+        private Button DataDirectoryButton;
+        private Label label3;
+        private TextBox DataDirectoryTextBox;
+        private FolderBrowserDialog DataDirectoryFolderBrowserDialog;
     }
 }
