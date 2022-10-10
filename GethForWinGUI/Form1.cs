@@ -89,12 +89,14 @@ namespace GethGUI
 
         private void InitButton_Click(object sender, EventArgs e)
         {
-            CommandOutputTextBox.Text = GethExe.Run(ExeDirectoryName, $"--datadir {GethGUIElement.DataDirectory} init {GethGUIElement.Genesis.FileName}");
+            var geth = new GethExe(ExeDirectoryName, $"--datadir {GethGUIElement.DataDirectory} init {GethGUIElement.Genesis.FileName}", false);
+            CommandOutputTextBox.Text = geth.Run();
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            CommandOutputTextBox.Text = GethExe.Run(ExeDirectoryName, $"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console");
+            var geth = new GethExe(ExeDirectoryName, $"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console", true);
+            CommandOutputTextBox.Text = geth.Run();
         }
 
         private void DataDirectoryButton_Click(object sender, EventArgs e)
