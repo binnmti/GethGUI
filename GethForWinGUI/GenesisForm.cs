@@ -21,7 +21,7 @@ namespace GethGUI
   ""nonce"": ""0x0000000000000042"",
   ""timestamp"": ""0x0"",
   ""parentHash"": ""0x0000000000000000000000000000000000000000000000000000000000000000"",
-  ""extraData"": "",
+  ""extraData"": """",
   ""gasLimit"": ""0x8000000"",
   ""difficulty"": ""0x4000"",
   ""mixhash"": ""0x0000000000000000000000000000000000000000000000000000000000000000"",
@@ -38,8 +38,9 @@ namespace GethGUI
 
         private void GenesisForm_Shown(object sender, EventArgs e)
         {
-            GenesisFileNameTextBox.Text = _genesis.FileName;
-            GenesisContextTextBox.Text = _genesis.Context;
+            var fileName = _genesis.FileName == "" ? Path.Combine(AppContext.BaseDirectory, "myGenesis.json") : _genesis.FileName;
+            GenesisFileNameTextBox.Text = fileName;
+            GenesisContextTextBox.Text = _genesis.Context == "" ? PrivateGenesisContext : _genesis.Context;
         }
 
         private void PrivateButton_Click(object sender, EventArgs e)
@@ -96,7 +97,6 @@ namespace GethGUI
             }
             _genesis.FileName = GenesisFileNameTextBox.Text;
             _genesis.Context = GenesisContextTextBox.Text;
-            Close();
         }
 
         private void OkButton_Click(object sender, EventArgs e)

@@ -24,7 +24,6 @@ namespace GethGUI
 
         private void SetGethGUI()
         {
-            DataDirectoryTextBox.Text = GethGUIElement.DataDirectory;
             if (!File.Exists(GethGUIElement.Genesis.FileName)) return;
 
             GenesisFileNameTextBox.Text = Path.GetFileName(GethGUIElement.Genesis.FileName);
@@ -34,6 +33,11 @@ namespace GethGUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            DataDirectoryTextBox.Text = GethGUIElement.DataDirectory;
+            if (DataDirectoryTextBox.Text == "")
+            {
+                DataDirectoryTextBox.Text = ExeDirectoryName;
+            }
             SetGethGUI();
         }
 
@@ -41,7 +45,6 @@ namespace GethGUI
         {
             var settingFileName = Path.ChangeExtension(Assembly.GetEntryAssembly()?.Location, ".json")!;
 
-            GethGUIElement.DataDirectory = DataDirectoryTextBox.Text;
             GethGUIElement.Save(settingFileName);
         }
 
@@ -81,17 +84,17 @@ namespace GethGUI
 
         private void GenesisFileNameTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            GethGUIElement.DataDirectory = DataDirectoryTextBox.Text;
         }
 
         private void InitButton_Click(object sender, EventArgs e)
         {
-            CommandOutputTextBox.Text = GethExe.Run(ExeDirectoryName, $"--datadir {DataDirectoryTextBox.Text} init {GenesisFileNameTextBox.Text}");
+            CommandOutputTextBox.Text = GethExe.Run(ExeDirectoryName, $"--datadir {GethGUIElement.DataDirectory} init {GethGUIElement.Genesis.FileName}");
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            CommandOutputTextBox.Text = GethExe.Run(ExeDirectoryName, $"--networkid {ChainId} --nodiscover --datadir {DataDirectoryTextBox.Text} console");
+            CommandOutputTextBox.Text = GethExe.Run(ExeDirectoryName, $"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console");
         }
 
         private void DataDirectoryButton_Click(object sender, EventArgs e)
