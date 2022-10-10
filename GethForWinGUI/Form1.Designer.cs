@@ -50,22 +50,28 @@
             // 
             // CommandInputTextBox
             // 
+            this.CommandInputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CommandInputTextBox.Location = new System.Drawing.Point(12, 35);
             this.CommandInputTextBox.Name = "CommandInputTextBox";
-            this.CommandInputTextBox.Size = new System.Drawing.Size(658, 31);
+            this.CommandInputTextBox.Size = new System.Drawing.Size(883, 31);
             this.CommandInputTextBox.TabIndex = 0;
             // 
             // CommandOutputTextBox
             // 
-            this.CommandOutputTextBox.Location = new System.Drawing.Point(8, 241);
+            this.CommandOutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CommandOutputTextBox.Location = new System.Drawing.Point(15, 241);
             this.CommandOutputTextBox.Multiline = true;
             this.CommandOutputTextBox.Name = "CommandOutputTextBox";
-            this.CommandOutputTextBox.Size = new System.Drawing.Size(776, 191);
+            this.CommandOutputTextBox.Size = new System.Drawing.Size(994, 389);
             this.CommandOutputTextBox.TabIndex = 1;
             // 
             // CommandInputRunButton
             // 
-            this.CommandInputRunButton.Location = new System.Drawing.Point(677, 33);
+            this.CommandInputRunButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CommandInputRunButton.Location = new System.Drawing.Point(902, 33);
             this.CommandInputRunButton.Name = "CommandInputRunButton";
             this.CommandInputRunButton.Size = new System.Drawing.Size(112, 34);
             this.CommandInputRunButton.TabIndex = 2;
@@ -111,10 +117,12 @@
             // 
             // GenesisFileNameTextBox
             // 
+            this.GenesisFileNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GenesisFileNameTextBox.Location = new System.Drawing.Point(163, 49);
             this.GenesisFileNameTextBox.Name = "GenesisFileNameTextBox";
             this.GenesisFileNameTextBox.ReadOnly = true;
-            this.GenesisFileNameTextBox.Size = new System.Drawing.Size(575, 31);
+            this.GenesisFileNameTextBox.Size = new System.Drawing.Size(803, 31);
             this.GenesisFileNameTextBox.TabIndex = 7;
             this.GenesisFileNameTextBox.TextChanged += new System.EventHandler(this.GenesisFileNameTextBox_TextChanged);
             // 
@@ -129,7 +137,8 @@
             // 
             // GenesisButton
             // 
-            this.GenesisButton.Location = new System.Drawing.Point(744, 47);
+            this.GenesisButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GenesisButton.Location = new System.Drawing.Point(972, 47);
             this.GenesisButton.Name = "GenesisButton";
             this.GenesisButton.Size = new System.Drawing.Size(36, 34);
             this.GenesisButton.TabIndex = 9;
@@ -149,6 +158,9 @@
             // 
             // GethGroupBox
             // 
+            this.GethGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GethGroupBox.Controls.Add(this.StartButton);
             this.GethGroupBox.Controls.Add(this.InitButton);
             this.GethGroupBox.Controls.Add(this.CommandInputTextBox);
@@ -161,7 +173,7 @@
             this.GethGroupBox.Enabled = false;
             this.GethGroupBox.Location = new System.Drawing.Point(-3, 104);
             this.GethGroupBox.Name = "GethGroupBox";
-            this.GethGroupBox.Size = new System.Drawing.Size(795, 449);
+            this.GethGroupBox.Size = new System.Drawing.Size(1023, 647);
             this.GethGroupBox.TabIndex = 11;
             this.GethGroupBox.TabStop = false;
             this.GethGroupBox.Text = "geth.exe";
@@ -178,7 +190,8 @@
             // 
             // DataDirectoryButton
             // 
-            this.DataDirectoryButton.Location = new System.Drawing.Point(744, 10);
+            this.DataDirectoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DataDirectoryButton.Location = new System.Drawing.Point(972, 10);
             this.DataDirectoryButton.Name = "DataDirectoryButton";
             this.DataDirectoryButton.Size = new System.Drawing.Size(36, 34);
             this.DataDirectoryButton.TabIndex = 14;
@@ -197,9 +210,11 @@
             // 
             // DataDirectoryTextBox
             // 
+            this.DataDirectoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DataDirectoryTextBox.Location = new System.Drawing.Point(163, 12);
             this.DataDirectoryTextBox.Name = "DataDirectoryTextBox";
-            this.DataDirectoryTextBox.Size = new System.Drawing.Size(575, 31);
+            this.DataDirectoryTextBox.Size = new System.Drawing.Size(803, 31);
             this.DataDirectoryTextBox.TabIndex = 12;
             this.DataDirectoryTextBox.TextChanged += new System.EventHandler(this.DataDirectoryTextBox_TextChanged);
             // 
@@ -211,7 +226,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 565);
+            this.ClientSize = new System.Drawing.Size(1032, 763);
             this.Controls.Add(this.DataDirectoryButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.DataDirectoryTextBox);
