@@ -8,6 +8,7 @@ namespace GethGUI
     public partial class Form1 : Form
     {
         private Web3Geth Web3Geth { get; } = new();
+        private GethExe GethExe { get; } 
         private string ExeDirectoryName { get; } = "";
         private int ChainId { get; set; }
 
@@ -20,6 +21,7 @@ namespace GethGUI
             var settingFileName = Path.ChangeExtension(Assembly.GetEntryAssembly()?.Location, ".json")!;
             GethGUIElement = GethGUIElementFileIO.Load(settingFileName);
             ExeDirectoryName = AppContext.BaseDirectory;
+            GethExe = new GethExe(ExeDirectoryName);
         }
 
         private void SetGethGUI()
@@ -89,14 +91,16 @@ namespace GethGUI
 
         private void InitButton_Click(object sender, EventArgs e)
         {
-            var geth = new GethExe(ExeDirectoryName, $"--datadir {GethGUIElement.DataDirectory} init {GethGUIElement.Genesis.FileName}", false);
-            CommandOutputTextBox.Text = geth.Run();
+            CommandOutputTextBox.Text = GethExe.Run(ExeDirectoryName, $"--datadir {GethGUIElement.DataDirectory} init {GethGUIElement.Genesis.FileName}");
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            var geth = new GethExe(ExeDirectoryName, $"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console", true);
-            CommandOutputTextBox.Text = geth.Run();
+            CommandOutputTextBox.Text = GethExe.Run($"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console");
+            GethExe.OnOutputDataReceived += (data) =>
+            {
+                Invoke(() => { CommandOutputTextBox.Text += data; });
+            };
         }
 
         private void DataDirectoryButton_Click(object sender, EventArgs e)
