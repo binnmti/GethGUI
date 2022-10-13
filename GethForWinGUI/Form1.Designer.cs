@@ -40,11 +40,13 @@
             this.GenesisButton = new System.Windows.Forms.Button();
             this.InitButton = new System.Windows.Forms.Button();
             this.GethGroupBox = new System.Windows.Forms.GroupBox();
+            this.ClearButton = new System.Windows.Forms.Button();
             this.StartButton = new System.Windows.Forms.Button();
             this.DataDirectoryButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.DataDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.DataDirectoryFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.label4 = new System.Windows.Forms.Label();
             this.GethGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,10 +64,11 @@
             this.CommandOutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CommandOutputTextBox.Location = new System.Drawing.Point(15, 241);
+            this.CommandOutputTextBox.Location = new System.Drawing.Point(15, 304);
             this.CommandOutputTextBox.Multiline = true;
             this.CommandOutputTextBox.Name = "CommandOutputTextBox";
-            this.CommandOutputTextBox.Size = new System.Drawing.Size(994, 389);
+            this.CommandOutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.CommandOutputTextBox.Size = new System.Drawing.Size(994, 326);
             this.CommandOutputTextBox.TabIndex = 1;
             // 
             // CommandInputRunButton
@@ -81,7 +84,7 @@
             // 
             // EthAccountsButton
             // 
-            this.EthAccountsButton.Location = new System.Drawing.Point(97, 155);
+            this.EthAccountsButton.Location = new System.Drawing.Point(109, 117);
             this.EthAccountsButton.Name = "EthAccountsButton";
             this.EthAccountsButton.Size = new System.Drawing.Size(132, 34);
             this.EthAccountsButton.TabIndex = 3;
@@ -91,7 +94,7 @@
             // 
             // PersonalNewAccountButton
             // 
-            this.PersonalNewAccountButton.Location = new System.Drawing.Point(264, 191);
+            this.PersonalNewAccountButton.Location = new System.Drawing.Point(276, 158);
             this.PersonalNewAccountButton.Name = "PersonalNewAccountButton";
             this.PersonalNewAccountButton.Size = new System.Drawing.Size(203, 34);
             this.PersonalNewAccountButton.TabIndex = 4;
@@ -102,7 +105,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 160);
+            this.label1.Location = new System.Drawing.Point(25, 122);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 25);
             this.label1.TabIndex = 5;
@@ -110,7 +113,7 @@
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(97, 194);
+            this.PasswordTextBox.Location = new System.Drawing.Point(109, 160);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(161, 31);
             this.PasswordTextBox.TabIndex = 6;
@@ -129,7 +132,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 52);
+            this.label2.Location = new System.Drawing.Point(4, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 25);
             this.label2.TabIndex = 8;
@@ -161,6 +164,8 @@
             this.GethGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GethGroupBox.Controls.Add(this.label4);
+            this.GethGroupBox.Controls.Add(this.ClearButton);
             this.GethGroupBox.Controls.Add(this.StartButton);
             this.GethGroupBox.Controls.Add(this.InitButton);
             this.GethGroupBox.Controls.Add(this.CommandInputTextBox);
@@ -178,9 +183,19 @@
             this.GethGroupBox.TabStop = false;
             this.GethGroupBox.Text = "geth.exe";
             // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(25, 264);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(132, 34);
+            this.ClearButton.TabIndex = 12;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(14, 115);
+            this.StartButton.Location = new System.Drawing.Point(151, 76);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(132, 34);
             this.StartButton.TabIndex = 11;
@@ -202,7 +217,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 15);
+            this.label3.Location = new System.Drawing.Point(31, 15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 25);
             this.label3.TabIndex = 13;
@@ -221,6 +236,15 @@
             // DataDirectoryFolderBrowserDialog
             // 
             this.DataDirectoryFolderBrowserDialog.RootFolder = System.Environment.SpecialFolder.ApplicationData;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 160);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 25);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Password";
             // 
             // Form1
             // 
@@ -264,5 +288,7 @@
         private Label label3;
         private TextBox DataDirectoryTextBox;
         private FolderBrowserDialog DataDirectoryFolderBrowserDialog;
+        private Button ClearButton;
+        private Label label4;
     }
 }

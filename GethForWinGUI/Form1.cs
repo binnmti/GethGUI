@@ -8,7 +8,7 @@ namespace GethGUI
     public partial class Form1 : Form
     {
         private Web3Geth Web3Geth { get; } = new();
-        private GethExe GethExe { get; } 
+        private GethProcess GethProcess { get; } 
         private string ExeDirectoryName { get; } = "";
         private int ChainId { get; set; }
 
@@ -21,7 +21,16 @@ namespace GethGUI
             var settingFileName = Path.ChangeExtension(Assembly.GetEntryAssembly()?.Location, ".json")!;
             GethGUIElement = GethGUIElementFileIO.Load(settingFileName);
             ExeDirectoryName = AppContext.BaseDirectory;
-            GethExe = new GethExe(ExeDirectoryName);
+            GethProcess = new GethProcess(ExeDirectoryName);
+            GethProcess.OnOutputDataReceived += (data) =>
+            {
+                Invoke(() => {
+                    CommandOutputTextBox.Text += data + Environment.NewLine;
+                    CommandOutputTextBox.SelectionStart = CommandOutputTextBox.Text.Length;
+                    CommandOutputTextBox.Focus();
+                    CommandOutputTextBox.ScrollToCaret();
+                });
+            };
         }
 
         private void SetGethGUI()
@@ -57,15 +66,13 @@ namespace GethGUI
 
         private async void EthAccountsButton_Click(object sender, EventArgs e)
         {
-            var request = await Web3Geth.Eth.Accounts.SendRequestAsync();
-            CommandOutputTextBox.Text += string.Concat(request);
+            GethProcess.Writer($"eth.accounts");
         }
 
-        private async void PersonalNewAccountButton_Click(object sender, EventArgs e)
+        private void PersonalNewAccountButton_Click(object sender, EventArgs e)
         {
-            CommandOutputTextBox.Text += await Web3Geth.Personal.NewAccount.SendRequestAsync(PasswordTextBox.Text);
+            GethProcess.Writer($"personal.newAccount(\"{PasswordTextBox.Text}\")");
         }
-
 
         private void SetGethGroupBox()
         {
@@ -91,16 +98,12 @@ namespace GethGUI
 
         private void InitButton_Click(object sender, EventArgs e)
         {
-            CommandOutputTextBox.Text = GethExe.Run(ExeDirectoryName, $"--datadir {GethGUIElement.DataDirectory} init {GethGUIElement.Genesis.FileName}");
+            CommandOutputTextBox.Text += GethProcess.Run(ExeDirectoryName, $"--datadir {GethGUIElement.DataDirectory} init {GethGUIElement.Genesis.FileName}");
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            CommandOutputTextBox.Text = GethExe.Run($"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console");
-            GethExe.OnOutputDataReceived += (data) =>
-            {
-                Invoke(() => { CommandOutputTextBox.Text += data; });
-            };
+            CommandOutputTextBox.Text += GethProcess.Run($"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console");
         }
 
         private void DataDirectoryButton_Click(object sender, EventArgs e)
@@ -118,6 +121,11 @@ namespace GethGUI
         private void DataDirectoryTextBox_TextChanged(object sender, EventArgs e)
         {
             SetGethGroupBox();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            CommandOutputTextBox.Text = "";
         }
     }
 }
