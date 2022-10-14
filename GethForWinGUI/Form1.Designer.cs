@@ -40,13 +40,13 @@
             this.GenesisButton = new System.Windows.Forms.Button();
             this.InitButton = new System.Windows.Forms.Button();
             this.GethGroupBox = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
             this.StartButton = new System.Windows.Forms.Button();
             this.DataDirectoryButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.DataDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.DataDirectoryFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.label4 = new System.Windows.Forms.Label();
             this.GethGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,8 +56,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CommandInputTextBox.Location = new System.Drawing.Point(12, 35);
             this.CommandInputTextBox.Name = "CommandInputTextBox";
+            this.CommandInputTextBox.PlaceholderText = ">";
             this.CommandInputTextBox.Size = new System.Drawing.Size(883, 31);
             this.CommandInputTextBox.TabIndex = 0;
+            this.CommandInputTextBox.TextChanged += new System.EventHandler(this.CommandInputTextBox_TextChanged);
+            this.CommandInputTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.CommandInputTextBox_PreviewKeyDown);
             // 
             // CommandOutputTextBox
             // 
@@ -74,6 +77,7 @@
             // CommandInputRunButton
             // 
             this.CommandInputRunButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CommandInputRunButton.Enabled = false;
             this.CommandInputRunButton.Location = new System.Drawing.Point(902, 33);
             this.CommandInputRunButton.Name = "CommandInputRunButton";
             this.CommandInputRunButton.Size = new System.Drawing.Size(112, 34);
@@ -183,6 +187,15 @@
             this.GethGroupBox.TabStop = false;
             this.GethGroupBox.Text = "geth.exe";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 160);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 25);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Password";
+            // 
             // ClearButton
             // 
             this.ClearButton.Location = new System.Drawing.Point(25, 264);
@@ -236,15 +249,6 @@
             // DataDirectoryFolderBrowserDialog
             // 
             this.DataDirectoryFolderBrowserDialog.RootFolder = System.Environment.SpecialFolder.ApplicationData;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 160);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 25);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Password";
             // 
             // Form1
             // 

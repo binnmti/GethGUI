@@ -59,9 +59,21 @@ namespace GethGUI
             GethGUIElement.Save(settingFileName);
         }
 
+        private void CommandInputTextBox_TextChanged(object sender, EventArgs e)
+        {
+            CommandInputRunButton.Enabled = CommandInputTextBox.Text != "";
+        }
 
         private void CommandInputRunButton_Click(object sender, EventArgs e)
         {
+            if(CommandInputTextBox.Text.Contains("console"))
+            {
+                CommandOutputTextBox.Text += GethProcess.Run(CommandInputTextBox.Text);
+            }
+            else
+            {
+                CommandOutputTextBox.Text += GethProcess.Run(ExeDirectoryName, CommandInputTextBox.Text);
+            }
         }
 
         private async void EthAccountsButton_Click(object sender, EventArgs e)
@@ -126,6 +138,11 @@ namespace GethGUI
         private void ClearButton_Click(object sender, EventArgs e)
         {
             CommandOutputTextBox.Text = "";
+        }
+
+        private void CommandInputTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) CommandInputRunButton_Click(sender, e);
         }
     }
 }
