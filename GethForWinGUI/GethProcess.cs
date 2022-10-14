@@ -6,13 +6,13 @@ namespace GethGUI;
 
 public class GethProcess
 {
-    private bool IsConsole;
     private readonly ProcessStartInfo Info = new();
     private readonly Process Process = new();
     private readonly CancellationTokenSource CancelToken = new();
     private StreamWriter StreamWriter = default!;
     public delegate void OutputDataReceived(string data);
     public event OutputDataReceived OnOutputDataReceived = delegate { };
+    public bool IsConsole { get; set; }
 
     public GethProcess(string folderName)
     {
@@ -37,6 +37,8 @@ public class GethProcess
 
         StreamWriter.WriteLine(value);
         OnOutputDataReceived.Invoke($"{Environment.NewLine}> {value}");
+
+        if (value.Contains("exit")) IsConsole = false;
     }
 
     public string Run(string arguments)

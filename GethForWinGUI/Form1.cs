@@ -66,7 +66,11 @@ namespace GethGUI
 
         private void CommandInputRunButton_Click(object sender, EventArgs e)
         {
-            if(CommandInputTextBox.Text.Contains("console"))
+            if (GethProcess.IsConsole)
+            {
+                GethProcess.Writer(CommandInputTextBox.Text);
+            }
+            else if (CommandInputTextBox.Text.Contains("console"))
             {
                 CommandOutputTextBox.Text += GethProcess.Run(CommandInputTextBox.Text);
             }
@@ -74,6 +78,7 @@ namespace GethGUI
             {
                 CommandOutputTextBox.Text += GethProcess.Run(ExeDirectoryName, CommandInputTextBox.Text);
             }
+            CommandInputTextBox.Text = "";
         }
 
         private async void EthAccountsButton_Click(object sender, EventArgs e)
@@ -116,6 +121,11 @@ namespace GethGUI
         private void StartButton_Click(object sender, EventArgs e)
         {
             CommandOutputTextBox.Text += GethProcess.Run($"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console");
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"exit");
         }
 
         private void DataDirectoryButton_Click(object sender, EventArgs e)

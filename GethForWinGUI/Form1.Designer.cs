@@ -47,6 +47,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.DataDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.DataDirectoryFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.GethGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,6 +169,7 @@
             this.GethGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GethGroupBox.Controls.Add(this.ExitButton);
             this.GethGroupBox.Controls.Add(this.label4);
             this.GethGroupBox.Controls.Add(this.ClearButton);
             this.GethGroupBox.Controls.Add(this.StartButton);
@@ -250,6 +252,16 @@
             // 
             this.DataDirectoryFolderBrowserDialog.RootFolder = System.Environment.SpecialFolder.ApplicationData;
             // 
+            // ExitButton
+            // 
+            this.ExitButton.Location = new System.Drawing.Point(15, 197);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(132, 34);
+            this.ExitButton.TabIndex = 14;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -294,5 +306,6 @@
         private FolderBrowserDialog DataDirectoryFolderBrowserDialog;
         private Button ClearButton;
         private Label label4;
+        private Button ExitButton;
     }
 }
