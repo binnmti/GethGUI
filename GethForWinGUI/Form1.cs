@@ -81,23 +81,14 @@ namespace GethGUI
             CommandInputTextBox.Text = "";
         }
 
-        private async void EthAccountsButton_Click(object sender, EventArgs e)
-        {
-            GethProcess.Writer($"eth.accounts");
-        }
-
-        private void PersonalNewAccountButton_Click(object sender, EventArgs e)
-        {
-            GethProcess.Writer($"personal.newAccount(\"{PasswordTextBox.Text}\")");
-        }
-
         private void SetGethGroupBox()
         {
             bool enabled = true;
             if (DataDirectoryTextBox.Text == "") enabled = false;
             if (GenesisFileNameTextBox.Text == "") enabled = false;
 
-            GethGroupBox.Enabled = enabled;
+            CmdRunPanel.Enabled = enabled;
+            CmdResultPanel.Enabled = enabled;
         }
 
         private void GenesisButton_Click(object sender, EventArgs e)
@@ -153,6 +144,31 @@ namespace GethGUI
         private void CommandInputTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) CommandInputRunButton_Click(sender, e);
+        }
+
+        private void EthAccountsButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"eth.accounts");
+        }
+
+        private void GetBlockButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"eth.getBlock({GetBlockNumberTextBox.Text})");
+        }
+
+        private void PersonalNewAccountButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"personal.newAccount(\"{PasswordTextBox.Text}\")");
+        }
+
+        private void EthCoinbaseButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"eth.coinbase");
+        }
+
+        private void MinerSetEtherbaseButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"miner.setEtherbase(eth.accounts[{EthAccountsNumberTextBox.Text}])");
         }
     }
 }
