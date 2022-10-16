@@ -61,6 +61,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.CmdResultPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MinerStartButton = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.MinerStopButton = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.EthBlockNumberButton = new System.Windows.Forms.Button();
             this.CmdRunPanel.SuspendLayout();
             this.CmdResultPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -87,7 +92,7 @@
             this.CommandOutputTextBox.Multiline = true;
             this.CommandOutputTextBox.Name = "CommandOutputTextBox";
             this.CommandOutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.CommandOutputTextBox.Size = new System.Drawing.Size(1064, 438);
+            this.CommandOutputTextBox.Size = new System.Drawing.Size(1064, 341);
             this.CommandOutputTextBox.TabIndex = 1;
             // 
             // CommandInputRunButton
@@ -301,7 +306,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 245);
+            this.label7.Location = new System.Drawing.Point(18, 285);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(114, 25);
             this.label7.TabIndex = 20;
@@ -309,7 +314,7 @@
             // 
             // MinerSetEtherbaseButton
             // 
-            this.MinerSetEtherbaseButton.Location = new System.Drawing.Point(138, 240);
+            this.MinerSetEtherbaseButton.Location = new System.Drawing.Point(138, 280);
             this.MinerSetEtherbaseButton.Name = "MinerSetEtherbaseButton";
             this.MinerSetEtherbaseButton.Size = new System.Drawing.Size(179, 34);
             this.MinerSetEtherbaseButton.TabIndex = 21;
@@ -319,7 +324,7 @@
             // 
             // EthAccountsNumberTextBox
             // 
-            this.EthAccountsNumberTextBox.Location = new System.Drawing.Point(440, 242);
+            this.EthAccountsNumberTextBox.Location = new System.Drawing.Point(440, 282);
             this.EthAccountsNumberTextBox.Name = "EthAccountsNumberTextBox";
             this.EthAccountsNumberTextBox.Size = new System.Drawing.Size(161, 31);
             this.EthAccountsNumberTextBox.TabIndex = 22;
@@ -328,7 +333,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(323, 245);
+            this.label8.Location = new System.Drawing.Point(323, 285);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(114, 25);
             this.label8.TabIndex = 23;
@@ -336,6 +341,11 @@
             // 
             // CmdRunPanel
             // 
+            this.CmdRunPanel.Controls.Add(this.label11);
+            this.CmdRunPanel.Controls.Add(this.EthBlockNumberButton);
+            this.CmdRunPanel.Controls.Add(this.MinerStopButton);
+            this.CmdRunPanel.Controls.Add(this.MinerStartButton);
+            this.CmdRunPanel.Controls.Add(this.label10);
             this.CmdRunPanel.Controls.Add(this.splitter1);
             this.CmdRunPanel.Controls.Add(this.label9);
             this.CmdRunPanel.Controls.Add(this.PasswordTextBox);
@@ -359,13 +369,13 @@
             this.CmdRunPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.CmdRunPanel.Location = new System.Drawing.Point(0, 135);
             this.CmdRunPanel.Name = "CmdRunPanel";
-            this.CmdRunPanel.Size = new System.Drawing.Size(1109, 291);
+            this.CmdRunPanel.Size = new System.Drawing.Size(1109, 388);
             this.CmdRunPanel.TabIndex = 24;
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 287);
+            this.splitter1.Location = new System.Drawing.Point(0, 384);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(1109, 4);
             this.splitter1.TabIndex = 25;
@@ -385,9 +395,9 @@
             this.CmdResultPanel.Controls.Add(this.ClearButton);
             this.CmdResultPanel.Controls.Add(this.CommandOutputTextBox);
             this.CmdResultPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CmdResultPanel.Location = new System.Drawing.Point(0, 426);
+            this.CmdResultPanel.Location = new System.Drawing.Point(0, 523);
             this.CmdResultPanel.Name = "CmdResultPanel";
-            this.CmdResultPanel.Size = new System.Drawing.Size(1109, 505);
+            this.CmdResultPanel.Size = new System.Drawing.Size(1109, 408);
             this.CmdResultPanel.TabIndex = 25;
             // 
             // panel1
@@ -404,6 +414,54 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1109, 135);
             this.panel1.TabIndex = 26;
+            // 
+            // MinerStartButton
+            // 
+            this.MinerStartButton.Location = new System.Drawing.Point(138, 320);
+            this.MinerStartButton.Name = "MinerStartButton";
+            this.MinerStartButton.Size = new System.Drawing.Size(132, 34);
+            this.MinerStartButton.TabIndex = 27;
+            this.MinerStartButton.Text = "miner.start";
+            this.MinerStartButton.UseVisualStyleBackColor = true;
+            this.MinerStartButton.Click += new System.EventHandler(this.MinerStartButton_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(72, 325);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 25);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Miner";
+            // 
+            // MinerStopButton
+            // 
+            this.MinerStopButton.Location = new System.Drawing.Point(276, 320);
+            this.MinerStopButton.Name = "MinerStopButton";
+            this.MinerStopButton.Size = new System.Drawing.Size(132, 34);
+            this.MinerStopButton.TabIndex = 28;
+            this.MinerStopButton.Text = "miner.stop";
+            this.MinerStopButton.UseVisualStyleBackColor = true;
+            this.MinerStopButton.Click += new System.EventHandler(this.MinerStopButton_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(10, 245);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(119, 25);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "BlockNumber";
+            // 
+            // EthBlockNumberButton
+            // 
+            this.EthBlockNumberButton.Location = new System.Drawing.Point(138, 240);
+            this.EthBlockNumberButton.Name = "EthBlockNumberButton";
+            this.EthBlockNumberButton.Size = new System.Drawing.Size(179, 34);
+            this.EthBlockNumberButton.TabIndex = 29;
+            this.EthBlockNumberButton.Text = "Eth.blockNumber";
+            this.EthBlockNumberButton.UseVisualStyleBackColor = true;
+            this.EthBlockNumberButton.Click += new System.EventHandler(this.EthBlockNumberButton_Click);
             // 
             // Form1
             // 
@@ -462,5 +520,10 @@
         private Panel CmdResultPanel;
         private Splitter splitter1;
         private Panel panel1;
+        private Button MinerStartButton;
+        private Label label10;
+        private Button MinerStopButton;
+        private Label label11;
+        private Button EthBlockNumberButton;
     }
 }

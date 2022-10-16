@@ -170,5 +170,20 @@ namespace GethGUI
         {
             GethProcess.Writer($"miner.setEtherbase(eth.accounts[{EthAccountsNumberTextBox.Text}])");
         }
+
+        private void MinerStartButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"miner.start()");
+        }
+
+        private void MinerStopButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"miner.stop()");
+        }
+
+        private void EthBlockNumberButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"eth.blockNumber");
+        }
     }
 }
