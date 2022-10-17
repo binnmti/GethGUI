@@ -111,7 +111,7 @@ namespace GethGUI
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            CommandOutputTextBox.Text += GethProcess.Run($"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console");
+            CommandOutputTextBox.Text += GethProcess.Run($"--networkid {ChainId} --nodiscover --datadir {GethGUIElement.DataDirectory} console 2>> geth_err.log");
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -184,6 +184,29 @@ namespace GethGUI
         private void EthBlockNumberButton_Click(object sender, EventArgs e)
         {
             GethProcess.Writer($"eth.blockNumber");
+        }
+
+        private void EthMiningButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"eth.mining");
+        }
+
+        private void EthHashrateButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"eth.hashrate");
+        }
+
+        private void MiningAutoCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (MiningAutoCheckBox.Checked)
+            {
+            }
+            else
+            {
+                MiningAutoTextBox.Text = "";
+                BlockNumberAutoTextBox.Text = "";
+                HashrateAutoTextBox.Text = "";
+            }
         }
     }
 }
