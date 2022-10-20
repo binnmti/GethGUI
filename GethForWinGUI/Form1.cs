@@ -168,7 +168,7 @@ namespace GethGUI
 
         private void MinerSetEtherbaseButton_Click(object sender, EventArgs e)
         {
-            GethProcess.Writer($"miner.setEtherbase(eth.accounts[{EthAccountsNumberTextBox.Text}])");
+            GethProcess.Writer($"miner.setEtherbase(eth.accounts[{SetEtherbaseEthAccountsNumberTextBox.Text}])");
         }
 
         private void MinerStartButton_Click(object sender, EventArgs e)
@@ -196,17 +196,33 @@ namespace GethGUI
             GethProcess.Writer($"eth.hashrate");
         }
 
-        private void MiningAutoCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void EthGetBalanceButton_Click(object sender, EventArgs e)
         {
-            if (MiningAutoCheckBox.Checked)
-            {
-            }
-            else
-            {
-                MiningAutoTextBox.Text = "";
-                BlockNumberAutoTextBox.Text = "";
-                HashrateAutoTextBox.Text = "";
-            }
+            GethProcess.Writer($"eth.getBalance(eth.accounts[{GetBalanceEthAccountsNumberTextBox.Text}])");
+        }
+
+        private void EthGetBalanceEtherButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"web3.fromWei(eth.getBalance(eth.accounts[{GetBalanceEthAccountsNumberTextBox.Text}]))");
+        }
+
+        private void EthSendTransactionButton_Click(object sender, EventArgs e)
+        {
+            var from = $"eth.accounts[{FromEthAccountTextBox.Text}]";
+            var to = $"eth.accounts[{ToEthAccountTextBox.Text}]";
+            var value = $"web3.toWei({ValueEtherTextBox.Text}, \"ether\")";
+            GethProcess.Writer($"eth.sendTransaction({{from: {from}, to: {to}, value: {value}}}) ");
+        }
+
+        private void PersonalUnlockAccountButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"personal.unlockAccount(eth.accounts[{UnlockEthAccountTextBox.Text}])");
+            GethProcess.Writer($"{UnlockAccountPasswordTextBox.Text}");
+        }
+
+        private void EthGetTransactionButton_Click(object sender, EventArgs e)
+        {
+            GethProcess.Writer($"eth.getTransaction('{GetTransactionIdTextBox.Text}')");
         }
     }
 }
