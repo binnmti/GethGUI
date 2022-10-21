@@ -1,15 +1,13 @@
-﻿using System.Data;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
 
-namespace GethGUI;
+namespace GethForWinGUI.Model;
 
 public class GethProcess
 {
-    private readonly ProcessStartInfo Info = new();
-    private readonly Process Process = new();
-    private readonly CancellationTokenSource CancelToken = new();
-    private StreamWriter StreamWriter = default!;
+    private ProcessStartInfo Info { get; } = new();
+    private Process Process { get; } = new();
+
     public delegate void OutputDataReceived(string data);
     public event OutputDataReceived OnOutputDataReceived = delegate { };
     public bool IsConsole { get; set; }
@@ -25,23 +23,20 @@ public class GethProcess
         Info.RedirectStandardInput = true;
         Process.StartInfo = Info;
         Process.EnableRaisingEvents = true;
-        Process.Exited += (sender, ev) =>
-        {
-            CancelToken.Cancel();
-        };
+        Process.Exited += (_, __) => { };
     }
 
     public void Writer(string value)
     {
         if (!IsConsole) return;
 
-        StreamWriter.WriteLine(value);
+        Process.StandardInput.WriteLine(value);
         OnOutputDataReceived.Invoke($"{Environment.NewLine}> {value}");
 
         if (value.Contains("exit")) IsConsole = false;
     }
 
-    public string Run(string arguments)
+    public string Start(string arguments)
     {
         Info.Arguments = $"/c geth {arguments}";
         Process.Start();
@@ -57,20 +52,8 @@ public class GethProcess
             if (ev.Data == "> ") return;
             OnOutputDataReceived.Invoke(ev.Data ?? "");
         };
-        StreamWriter = Process.StandardInput;
-        if (arguments.Contains("console"))
-        {
-            IsConsole = true;
-            return $">geth {arguments}{Environment.NewLine}";
-        } 
-        else
-        {
-            //TODO:Delete 
-            IsConsole = false;
-            CancelToken.Token.WaitHandle.WaitOne();
-            Process.WaitForExit();
-            return "";
-        }
+        IsConsole = true;
+        return $">geth {arguments}{Environment.NewLine}";
     }
 
     public static string Run(string folderName, string arguments)
