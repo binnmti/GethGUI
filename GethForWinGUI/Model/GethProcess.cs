@@ -11,6 +11,9 @@ public class GethProcess
     public delegate void OutputDataReceived(string data);
     public event OutputDataReceived OnOutputDataReceived = delegate { };
     public bool IsConsole { get; set; }
+    public string WriteLogKey { get; private set; }
+    public record Log(string WriterValue, string OutputDataReceivedData);
+    public List<Log> Logs { get; set; } = new();
 
     public GethProcess(string folderName)
     {
@@ -32,8 +35,9 @@ public class GethProcess
 
         Process.StandardInput.WriteLine(value);
         OnOutputDataReceived.Invoke($"{Environment.NewLine}> {value}");
-
+        WriteLogKey = value;
         if (value.Contains("exit")) IsConsole = false;
+
     }
 
     public string Start(string arguments)
@@ -45,11 +49,13 @@ public class GethProcess
         Process.OutputDataReceived += (sender, ev) =>
         {
             if (ev.Data == "> ") return;
+            Logs.Add(new Log(WriteLogKey, ev.Data ?? ""));
             OnOutputDataReceived.Invoke(ev.Data ?? "");
         };
         Process.ErrorDataReceived += (sender, ev) =>
         {
             if (ev.Data == "> ") return;
+            Logs.Add(new Log(WriteLogKey, ev.Data ?? ""));
             OnOutputDataReceived.Invoke(ev.Data ?? "");
         };
         IsConsole = true;
