@@ -1,5 +1,4 @@
 using GethForWinGUI.Model;
-using GethGUI.Model;
 using Nethereum.Geth;
 using System.Reflection;
 

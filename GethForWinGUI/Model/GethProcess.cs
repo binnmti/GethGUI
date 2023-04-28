@@ -11,7 +11,7 @@ public class GethProcess
     public delegate void OutputDataReceived(string data);
     public event OutputDataReceived OnOutputDataReceived = delegate { };
     public bool IsConsole { get; set; }
-    public string WriteLogKey { get; private set; }
+    public string WriteLogKey { get; private set; } = "";
     public record Log(string WriterValue, string OutputDataReceivedData);
     public List<Log> Logs { get; set; } = new();
 
@@ -37,7 +37,6 @@ public class GethProcess
         OnOutputDataReceived.Invoke($"{Environment.NewLine}> {value}");
         WriteLogKey = value;
         if (value.Contains("exit")) IsConsole = false;
-
     }
 
     public string Start(string arguments)
@@ -62,16 +61,21 @@ public class GethProcess
         return $">geth {arguments}{Environment.NewLine}";
     }
 
-    public static string Run(string folderName, string arguments)
+    //Startを呼ぶ前はインスタンスがいらないので使い捨てでProcessを呼ぶ。
+    public string Run(string folderName, string arguments)
     {
+        var startInfo = new ProcessStartInfo()
+        {
+            FileName = Environment.GetEnvironmentVariable("ComSpec"),
+            Arguments = $"/c geth {arguments}",
+            WorkingDirectory = folderName,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+        };
         using var ps = new Process();
-        ps.StartInfo.FileName = Environment.GetEnvironmentVariable("ComSpec");
-        ps.StartInfo.Arguments = $"/c geth {arguments}";
-        ps.StartInfo.WorkingDirectory = folderName;
-        ps.StartInfo.RedirectStandardOutput = true;
-        ps.StartInfo.RedirectStandardError = true;
-        ps.StartInfo.UseShellExecute = false;
-        ps.StartInfo.CreateNoWindow = true;
+        ps.StartInfo = startInfo;
         ps.Start();
         ps.BeginErrorReadLine();
         ps.BeginOutputReadLine();
